@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.category {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.category h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.category .list-group-item {
+  border: none;
+}
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-number {
+  font-size: 2rem; /* Adjust the font size to match the bold numbers */
+  font-weight: bold;
+}
+
+.countdown-label {
+  font-size: 0.875rem; /* Smaller text for the label */
+  font-weight: normal;
+}
+
+.countdown-separator {
+  font-size: 2rem; /* The same size as the numbers */
+  color: #FF6B6B; /* Set the color for the separator */
+  margin: 0 8px; /* Add some spacing between the time units */
+}
+
+.product-card {
+  background-color: white;
+  transition: transform 0.2s ease;
+  border: none; /* Remove the border */
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Add gray background to the image container */
+.image-container {
+  background-color: #f8f9fa; /* Light gray background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.icon {
+  font-size: 1.25rem;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating .fa-star {
+  margin-right: 4px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

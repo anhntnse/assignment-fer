@@ -1,0 +1,35 @@
+.carousel {
+  display: flex;
+  .carousel-indicators {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-right: 30px;
+    justify-content: space-between;
+  }
+}
+
+.carousel {
+  .carousel-indicators {
+    button {
+      background-color: black;
+      height: 100px;
+      width: 100px;
+      margin: 0;
+      text-indent: 0 !important;
+      border: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+    div {
+      height: 100px;
+      width: 100px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

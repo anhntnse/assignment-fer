@@ -1,0 +1,40 @@
+
+.cont-404 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont-404 img {
+    height: 50vh;
+    width: 50vw;
+}
+
+.cont-404 button {
+    padding: 12px 15px;
+    background-color: #ff0000;
+    /* Red background color */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2rem;
+    /* Increase font size for the button */
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+.cont-404 button:hover {
+    background-color: #c70000;
+    /* Darker red on hover */
+}
+.cont-404 p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin: 20px 0;
+    color: #333;
+    text-align: center;
+
+}
