@@ -1,5 +1,6 @@
-.carousel {
+.custom-carousel {
   display: flex;
+  height: 100%;
   .carousel-indicators {
     position: static;
     display: flex;
@@ -10,7 +11,14 @@
   }
 }
 
-.carousel {
+.custom-carousel {
+  .custom-carousel-item {
+    height: 100%;
+    img {
+      width: 100%;
+    }
+  }
+
   .carousel-indicators {
     button {
       background-color: black;

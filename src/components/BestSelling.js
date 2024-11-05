@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Product from './Product';
 import laptop1 from '../images/laptop1.jpg'
 import laptop2 from '../images/laptop2.jpg'
@@ -45,6 +46,12 @@ const BestSelling = () => {
     },
   ];
 
+  // const navigate = useNavigate();
+
+  // const handleNavigate = () => {
+  //   navigate('/product-details');
+  // }
+
   return (
     <div>
       <Row>
@@ -57,6 +64,7 @@ const BestSelling = () => {
               originalPrice={product.originalPrice}
               rating={product.rating}
               discount={product.discount}
+            // navigateCalb={handleNavigate}
             />
           </Col>
         ))}

@@ -10,7 +10,7 @@ import {
   Stack,
   InputGroup,
 } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { FaRegHeart, FaSearch } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -39,13 +39,13 @@ const Header = () => {
             >
               <Nav className="mx-auto">
                 <Stack direction="horizontal" gap={3}>
-                  <Nav.Link
-                    href="/"
+                  <NavLink
+                    to='/'
                     className="fw-semibold md-3"
-                    styple={{ color: "black" }}
+                    style={{ color: "black", textDecoration: 'none' }}
                   >
                     Home
-                  </Nav.Link>
+                  </NavLink>
                   <Nav.Link
                     href="/contact"
                     className="fw-semibold md-3"
@@ -60,13 +60,15 @@ const Header = () => {
                   >
                     About
                   </Nav.Link>
-                  <Nav.Link
-                    href="/sign-up"
-                    className="fw-semibold md-3"
-                    styple={{ color: "black" }}
-                  >
+                  <NavLink to="/sign-up" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '600' }}>
+                    {/* <Nav.Link
+                      // href="/sign-up"
+                      className="fw-semibold md-3"
+                      styple={{ color: "black" }}
+                    > */}
                     Sign Up
-                  </Nav.Link>
+                    {/* </Nav.Link> */}
+                  </NavLink>
                 </Stack>
               </Nav>
             </Navbar.Collapse>
@@ -103,10 +105,10 @@ const Header = () => {
               {/* Icons with black color and white border */}
               <Link to="/wish-list">
 
-              <FaRegHeart
-                className="ms-3"
-                style={{ fontSize: "25px", color: "#000" }}
-              />
+                <FaRegHeart
+                  className="ms-3"
+                  style={{ fontSize: "25px", color: "#000" }}
+                />
               </Link>{" "}
               {/* Trái tim viền đen */}
               <Link to="/cart">
