@@ -1,0 +1,72 @@
+/* Sidebar Styling */
+.sidebar {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h5 {
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #8b8a8a;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+/* Active Link Styling */
+.sidebar ul li a.text-danger {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Hover Effect for Links */
+.sidebar ul li a:hover {
+    color: #dc3545;
+}
+
+.sidebar ul li a.text-danger {
+    color: #dc3545;
+}
+.edit-profile {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.edit-profile h3 {
+    color: #dc3545;
+}
+
+.custom-input {
+    background-color: #f5f5f5 !important; /* Light gray background for inputs */
+    border: none !important; /* Remove border */
+    border-radius: 5px !important;
+    padding: 12px !important;
+    
+  }
+  .custom-input::placeholder {
+    color: #969494 !important; /* Change this to the color you want for the placeholder text */
+    opacity: 1; /* Ensures full opacity of the color */
+  }
+  
+  .custom-input:focus {
+    border-color: #007bff;
+    background-color: #ffffff; /* White background on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Subtle blue shadow on focus */
+  }

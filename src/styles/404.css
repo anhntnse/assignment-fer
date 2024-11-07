@@ -38,3 +38,21 @@
     text-align: center;
 
 }
+/* Contact Information Card */
+.contact-info-card {
+    border: none;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .contact-info-card h5 {
+    font-weight: bold;
+    margin-bottom: 8px; /* Add space below headers */
+  }
+  
+  .contact-info-card p {
+    margin: 8px 0; /* Increase space between paragraphs */
+    line-height: 2.0; /* Increase line height for better readability */
+    color: #333;
+  }

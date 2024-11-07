@@ -1,0 +1,27 @@
+.custom-dropdown-menu {
+    min-width: 200px;
+    background: linear-gradient(to bottom, #6e6e7f, #333358); /* Gradient background */
+    color: #fff;
+    border: none;
+    padding: 10px 0;
+  }
+  
+  .custom-dropdown-item {
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+  
+  .custom-dropdown-item:hover {
+    background-color: #333358 !important    ; /* Light hover effect */
+  }
+  
+  .custom-dropdown-icon {
+    font-size: 20px;
+    margin-right: 10px; /* Spacing between icon and text */
+  }
+  .text-dark a:hover {
+    color: #dc3545; /* Hover color for social media icons */
+}

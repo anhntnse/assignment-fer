@@ -1,0 +1,68 @@
+/* Contact Information Card */
+.contact-info-card {
+  border: none !important; /* Remove border */
+  background-color: #f8f9fa; /* Light background */
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  font-size: 13px;
+}
+
+.contact-info-card h5 {
+  font-weight: bold;
+}
+
+.contact-info-card p {
+  margin: 0;
+  color: #333;
+}
+
+/* Form Card */
+.form-card {
+  border-radius: 10px;
+  background-color: #ffffff !important; /* White background for form */
+  padding: 20px;
+  border: none !important; /* Remove default border */
+}
+
+/* Shadows */
+.custom-shadow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Input Styling */
+.custom-input {
+  background-color: #f5f5f5 !important; /* Light gray background for inputs */
+  border: none !important; /* Remove border */
+  border-radius: 2px !important;
+  padding: 12px !important;
+  
+}
+.custom-input::placeholder {
+  color: #969494 !important; /* Change this to the color you want for the placeholder text */
+  opacity: 1; /* Ensures full opacity of the color */
+}
+
+.custom-input:focus {
+  border-color: #007bff;
+  background-color: #ffffff; /* White background on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Subtle blue shadow on focus */
+}
+
+/* Button Styling */
+.custom-button {
+  background-color: #dc3545; /* Red background for button */
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  width: 180px;
+  height: 43px;
+  border-radius: 0.1px;
+  display: flex !important;
+  align-items: center !important; /* Center text vertically */
+  justify-content: center !important; /* Center text horizontally */
+}
+
+.custom-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

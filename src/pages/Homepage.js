@@ -4,7 +4,6 @@ import BestSelling from "../components/BestSelling";
 import Timer from "../components/Timer";
 import Categories from "../components/Categories";
 import { Col, Container, Row, Button } from "react-bootstrap";
-import NewArrival from "../components/NewArrival";
 import banner from "../images/banner.webp"
 const Homepage = () => {
   return (
@@ -63,9 +62,6 @@ const Homepage = () => {
           <BestSelling />
         </Row>
 
-        <Row>
-          <NewArrival />
-        </Row>
       </Container>
     </div>
   );

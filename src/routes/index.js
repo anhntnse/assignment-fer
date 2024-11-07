@@ -9,6 +9,8 @@ import WishList from '../pages/WishList';
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import ProductDetails from '../pages/ProductDetails';
+import Account from '../pages/Account';
+import About  from '../pages/About';
 
 const routes = createBrowserRouter([
   {
@@ -23,7 +25,10 @@ const routes = createBrowserRouter([
       { path: 'wish-list', element: <WishList /> },
       { path: 'sign-up', element: <SignUp /> },
       { path: 'login', element: <Login /> },
-      { path: 'product-details', element: <ProductDetails /> }
+      { path: 'product-details', element: <ProductDetails /> },
+      { path: 'account', element: <Account /> },
+      { path: 'about', element: <About /> }
+
 
       // Các route con khác
     ],
