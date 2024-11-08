@@ -1,23 +1,53 @@
+import { useState } from 'react';
 import {
-    Container,
-    Card,
-    Row,
-    Col,
-    Button,
-    Form,
-    Image,
-    FormGroup,
-    FormControl,
-  } from "react-bootstrap";
+  Container,
+  Card,
+  Row,
+  Col,
+  Button,
+  Form,
+  Image,
+  FormGroup,
+  FormControl,
+} from "react-bootstrap";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { auth } from '../config/Config';
 
 const Login = () => {
-    return (
-        <Container className="my-5">
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate();
+
+  const login = async (e) => {
+    e.preventDefault();
+    console.log('data: ', { email, password });
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // alert("Login successful!");
+      toast.success("Login successful!");
+      navigate('/');
+      // setEmail('');
+      // setPassword('');
+    } catch (error) {
+      setError(error.message);
+    };
+  };
+
+  console.log('data: ', { email, password });
+
+  return (
+    <Container className="my-5">
       <Card className="border-0 shadow-sm">
         <Row className="g-0">
           <Col md={6}>
             <Image
-              src="https://www.bing.com/images/blob?bcid=S6WfgySMIa0HIm8pOApzK265uDTH.....-I"
+              src="https://bstats.org/images/i-need-you-to-login.jpg"
               alt="login form"
               className="rounded-start w-100"
             />
@@ -44,6 +74,8 @@ const Login = () => {
                     type="email"
                     size="md"
                     placeholder="Email or Phone Number"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Group>
 
@@ -52,26 +84,21 @@ const Login = () => {
                     type="password"
                     size="md"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>
-                <Row>
-                <Col>
-                <Button variant="danger" type="submit" className="mt-2 px-5 py-3">
+
+                {error && <p>{error}</p>}
+                <Button variant="danger" className="mt-2 px-5 py-3" onClick={login}>
                   Login
                 </Button>
-                </Col>
-                <Col className="mt-3 m-lg-4">
-                <a href="#!" className="small text-danger" style={{textDecoration: "none"}}>
-                Forgot password?
-              </a>
-              </Col>
-              </Row>              
-              </Form> 
+              </Form>
             </Card.Body>
           </Col>
         </Row>
       </Card>
     </Container>
-    );
+  );
 }
 export default Login;

@@ -1,0 +1,10 @@
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(223, 223, 221);
+    padding: 20px;
+};
+
+a .active{
+    background-color: azure;
+}

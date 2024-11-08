@@ -10,7 +10,11 @@ import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import ProductDetails from '../pages/ProductDetails';
 import Account from '../pages/Account';
-import About  from '../pages/About';
+import About from '../pages/About';
+import AddAProduct from '../pages/AddAProduct';
+import AminPanel from '../pages/AdminPanel';
+import AllUsers from '../pages/AllUsers';
+import AllProducts from '../pages/AllProducts';
 
 const routes = createBrowserRouter([
   {
@@ -25,10 +29,16 @@ const routes = createBrowserRouter([
       { path: 'wish-list', element: <WishList /> },
       { path: 'sign-up', element: <SignUp /> },
       { path: 'login', element: <Login /> },
-      { path: 'product-details', element: <ProductDetails /> },
+      { path: 'product-details/:productId', element: <ProductDetails /> },
       { path: 'account', element: <Account /> },
-      { path: 'about', element: <About /> }
-
+      { path: 'about', element: <About /> },
+      { path: 'add-a-product', element: <AddAProduct /> },
+      {
+        path: 'admin-panel', element: <AminPanel />, children: [
+          { path: 'all-users', element: <AllUsers /> },
+          { path: 'all-products', element: <AllProducts /> }
+        ]
+      }
 
       // Các route con khác
     ],

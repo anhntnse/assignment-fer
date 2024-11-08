@@ -3,10 +3,10 @@ import { Card } from 'react-bootstrap';
 import { FaHeart, FaEye, FaStar } from 'react-icons/fa'; // For icons
 import { useNavigate, Link } from 'react-router-dom';
 
-const Product = ({ image, name, discountPrice, originalPrice, rating, discount }) => {
+const Product = ({ image, name, discountPrice, originalPrice, rating, discount, productId }) => {
   return (
     // <Card className="product-card border-0" onClick={navigateCalb}>
-    <Link to='product-details' style={{ color: 'inherit', textDecoration: 'none' }}>
+    <Link to={`product-details/${productId}`} style={{ color: 'inherit', textDecoration: 'none' }}>
       <Card className="product-card border-0">
         <Card.Header className="text-danger bg-white border-0">
           {discount && <span className="badge bg-danger">-{discount}%</span>}

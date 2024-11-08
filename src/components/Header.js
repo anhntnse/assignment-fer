@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -9,6 +9,7 @@ import {
   Stack,
   InputGroup,
   Dropdown,
+  NavDropdown
 } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import {
@@ -21,10 +22,40 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../config/Config';
+import { useAuth } from "../context/UserContext";
 import "../styles/header.css";
 
 const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const { user, logout } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
+  const [error, setError] = useState(null);
+
+  const getUserDetails = async (userId) => {
+    try {
+      const userRef = doc(db, 'users', userId); // Reference to user document
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        setUserDetails(userDoc.data());
+      } else {
+        setError("User not found");
+      }
+    } catch (err) {
+      setError("Error fetching user: " + err.message);
+    }
+  };
+
+  useEffect(() => {
+    getUserDetails(user?.uid);
+  }, []);
+
+  console.log(userDetails);
+
+  // console.log('user: ', user);
 
   return (
     <header className="border-b shadow-sm">
@@ -71,22 +102,24 @@ const Header = () => {
                   >
                     About
                   </Nav.Link>
-                  <NavLink
-                    to="/sign-up"
-                    style={{
-                      color: "inherit",
-                      textDecoration: "none",
-                      fontWeight: "600",
-                    }}
-                  >
-                    {/* <Nav.Link
+                  {!user && (
+                    <NavLink
+                      to="/sign-up"
+                      style={{
+                        color: "inherit",
+                        textDecoration: "none",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {/* <Nav.Link
                       // href="/sign-up"
                       className="fw-semibold md-3"
                       styple={{ color: "black" }}
                     > */}
-                    Sign Up
-                    {/* </Nav.Link> */}
-                  </NavLink>
+                      Sign Up
+                      {/* </Nav.Link> */}
+                    </NavLink>
+                  )}
                 </Stack>
               </Nav>
             </Navbar.Collapse>
@@ -135,69 +168,86 @@ const Header = () => {
                 />
               </Link>{" "}
               {/* User Profile Dropdown */}
-              <Dropdown
-                show={showDropdown}
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
-                className="ms-3"
-              >
-                <Dropdown.Toggle as="span">
-                  <FaUserCircle
-                    style={{
-                      fontSize: "25px",
-                      color: "#000",
-                      cursor: "pointer",
-                    }}
-                  />
-                </Dropdown.Toggle>
+              {user && (
+                <Dropdown
+                  show={showDropdown}
+                  onMouseEnter={() => setShowDropdown(true)}
+                  onMouseLeave={() => setShowDropdown(false)}
+                  className="ms-3"
+                >
+                  <Dropdown.Toggle as="span">
+                    <FaUserCircle
+                      style={{
+                        fontSize: "25px",
+                        color: "#000",
+                        cursor: "pointer",
+                      }}
+                    />
+                    <span className='ms-2'>{user?.email}</span>
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu align="end" className="custom-dropdown-menu" style={{padding: "0px"}}>
-                  <Dropdown.Item
-                    as={Link}
-                    to="/account"
-                    className="custom-dropdown-item"
-                    style={{paddingTop: "10px", borderRadius: "3px"}}
-                  >
-                    <FaUserCircle className="custom-dropdown-icon" /> Manage My
-                    Account
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    as={Link}
-                    to="/orders"
-                    className="custom-dropdown-item"
+                  <Dropdown.Menu align="end" className="custom-dropdown-menu" style={{ padding: "0px" }}>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/account"
+                      className="custom-dropdown-item"
+                      style={{ paddingTop: "10px", borderRadius: "3px" }}
+                    >
+                      <FaUserCircle className="custom-dropdown-icon" /> Manage My
+                      Account
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/orders"
+                      className="custom-dropdown-item"
 
-                  >
-                    <FaBoxOpen className="custom-dropdown-icon" /> My Order
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    as={Link}
-                    to="/cancellations"
-                    className="custom-dropdown-item"
+                    >
+                      <FaBoxOpen className="custom-dropdown-icon" /> My Order
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/cancellations"
+                      className="custom-dropdown-item"
 
-                  >
-                    <FaTimesCircle className="custom-dropdown-icon" /> My
-                    Cancellations
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    as={Link}
-                    to="/reviews"
-                    className="custom-dropdown-item"
-                    style={{paddingBottom: "10px"}}
-                  >
-                    <FaStar className="custom-dropdown-icon" /> My Reviews
-                  </Dropdown.Item>
-                  <Dropdown.Divider style={{margin: "0px"}} />
-                  <Dropdown.Item
-                    as={Link}
-                    to="/logout"
-                    className="custom-dropdown-item"
-                    style={{paddingBottom: "10px", borderRadius: "3px"}}
+                    >
+                      <FaTimesCircle className="custom-dropdown-icon" /> My
+                      Cancellations
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/reviews"
+                      className="custom-dropdown-item"
+                      style={{ paddingBottom: "10px" }}
+                    >
+                      <FaStar className="custom-dropdown-icon" /> My Reviews
+                    </Dropdown.Item>
 
-                  >
-                    <FaSignOutAlt className="custom-dropdown-icon" /> Logout
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                    {
+                      userDetails?.role === 'ADMIN' && (
+                        <Dropdown.Item
+                          as={Link}
+                          to="/admin-panel"
+                          className="custom-dropdown-item"
+                          style={{ paddingBottom: "10px" }}
+                        >
+                          <FaStar className="custom-dropdown-icon" /> Admin Panel
+                        </Dropdown.Item>
+                      )
+                    }
+                    <Dropdown.Divider style={{ margin: "0px" }} />
+                    <Dropdown.Item
+                      as={Link}
+                      // to="/logout"
+                      className="custom-dropdown-item"
+                      style={{ paddingBottom: "10px", borderRadius: "3px" }}
+                      onClick={logout}
+                    >
+                      <FaSignOutAlt className="custom-dropdown-icon" /> Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+
             </div>
           </Col>
         </Container>

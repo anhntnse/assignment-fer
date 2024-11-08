@@ -15,18 +15,46 @@ import ProductsSlider from '../components/ProductsSlider';
 // import image6 from './image/image6.png';
 import { TbTruckDelivery } from "react-icons/tb";
 import { GrPowerCycle } from "react-icons/gr";
+import { useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../config/Config';
 
 
 function App() {
+    const productId = useParams();
+
+    console.log('product id: ', productId.productId);
+    const [product, setProduct] = useState(null);
+    const [error, setError] = useState(null);
+
+    const fetchProduct = async () => {
+        try {
+            const productRef = doc(db, 'products', productId.productId); // Reference to the product document
+            const productDoc = await getDoc(productRef);
+
+            if (productDoc.exists()) {
+                setProduct(productDoc.data());
+            } else {
+                setError("Product not found");
+            }
+        } catch (err) {
+            setError("Error fetching product: " + err.message);
+        }
+    };
+
+    useEffect(() => {
+        fetchProduct();
+    }, []);
+
 
     return (
         <Container>
             <Row className="mt-5">
                 <Col md={7}>
-                    <ImagesSlider />
+                    <ImagesSlider data={product} />
                 </Col>
                 <Col md={5}>
-                    <h1 className='fs-3' style={{ padding: 0, margin: 0 }}>iPhone 15 Pro Max 256GB | Chính hãng VN/A</h1>
+                    <h1 className='fs-3' style={{ padding: 0, margin: 0 }}>{product?.productName}</h1>
                     <div className='d-flex gap-4 align-items-center mt-3'>
                         <StarReview />
                         <p className='m-0'>100 reviews</p>
@@ -34,11 +62,11 @@ function App() {
                         <p className='m-0 text-success'>In stocks</p>
                     </div>
                     <div className='text-start mt-3'>
-                        <h3>$192.00</h3>
+                        <h3>${product?.price}.00</h3>
                     </div>
                     <div className='text-start mt-3'>
                         <p>
-                            PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.
+                            {product?.description}
                         </p>
                     </div>
                     <div className='text-start mt-3' style={{ border: '1px solid black' }} />

@@ -7,12 +7,13 @@ import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';  // Ensure this file is configured for Tailwind CSS
+import { UserProvider } from './context/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <UserProvider>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </UserProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
